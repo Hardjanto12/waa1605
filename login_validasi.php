@@ -56,4 +56,3 @@ if(isset($_POST['btnLogin'])){
 	}
 } // End POST
 ?>
- 
