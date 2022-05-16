@@ -27,7 +27,8 @@ date_default_timezone_set("Asia/Jakarta");
     <script type="text/javascript" src="tableExport/jquery.base64.js"></script>
     <script src="js/export.js"></script>
     <script type="text/javascript" src="plugins/tigra_calendar/tcal.js"></script>
-
+    <style>
+    </style>
 
     <link rel="stylesheet" type="text/css" href="styles/sidebar.css">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
@@ -40,6 +41,7 @@ date_default_timezone_set("Asia/Jakarta");
 </head>
 
 <body>
+
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -55,24 +57,21 @@ date_default_timezone_set("Asia/Jakarta");
 
         <!-- Page Content  -->
         <div id="content">
-
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                         <i class="fas fa-align-left"></i>
-                        <span>Toggle Sidebar</span>
+                        <span>Collapse Menu</span>
                     </button>
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
-
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">Page</a>
+                                <a class="nav-link" href="#">Tools</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Page</a>
@@ -87,14 +86,11 @@ date_default_timezone_set("Asia/Jakarta");
                     </div>
                 </div>
             </nav>
-
             <div class="container-fluid">
                 <?php include "buka_file.php"?>
             </div>
-
         </div>
     </div>
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -1,7 +1,3 @@
-/*
-    DEMO STYLE
-*/
-
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
   font-family: "Poppins", sans-serif;
@@ -25,6 +21,7 @@ a:focus {
 }
 
 .navbar {
+  position: relative;
   padding: 15px 10px;
   background: #fff;
   border: none;
@@ -58,14 +55,17 @@ span {
 .wrapper {
   display: flex;
   align-items: stretch;
+  overflow: hidden;
 }
 
 #sidebar {
   min-width: 250px;
   max-width: 250px;
+  max-height: max-content;
   background: #7386d5;
   color: #fff;
   transition: all 0.3s;
+  position: relative;
 }
 
 #sidebar.active {
@@ -84,7 +84,7 @@ span {
 }
 
 #sidebar ul li a {
-  text-align: left;
+  text-align: center;
 }
 
 #sidebar.active ul li a {
@@ -114,8 +114,9 @@ span {
 }
 
 #sidebar .sidebar-header {
-  padding: 20px;
+  padding: 10px;
   background: #6d7fcc;
+  text-align: center;
 }
 
 #sidebar .sidebar-header strong {
@@ -199,6 +200,8 @@ a.article:hover {
   padding: 20px;
   min-height: 100vh;
   transition: all 0.3s;
+  max-height: inherit;
+  overflow-x: hidden;
 }
 
 /* ---------------------------------------------------

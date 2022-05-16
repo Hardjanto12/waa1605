@@ -8,7 +8,7 @@ if(isset($_SESSION['SES_LOGIN'])){
 		?>
 
 
-<li class="text-center text-white"><strong>Master</strong>
+<li class="p-2 text-center bg-dark"><strong>Master</strong>
 <li><a href="?open=Account-Data" target="_self"> Account </a></li>
 <li><a href="?open=Supplier-Data" target="_self"> Supplier </a></li>
 <li><a href="?open=Customer-Data" target="_self"> Customer </a></li>
@@ -18,7 +18,7 @@ if(isset($_SESSION['SES_LOGIN'])){
 <li><a href="?open=Inventory-Data" target="_self"> Inventory </a></li>
 </li>
 </li>
-<li class="text-center text-white"><strong>Transaksi</strong>
+<li class="p-2 text-center bg-dark"><strong>Transaksi</strong>
 <li><a href="?open=Pembelian-Data" target="_self"> Pembelian </a></li>
 <li><a href="?open=Pemakaian-Data" target="_self"> Pemakaian Bahan </a></li>
 <li><a href="?open=Pemakaian-Data2" target="_self"> Approval Pemakaian Bahan </a></li>
@@ -26,7 +26,7 @@ if(isset($_SESSION['SES_LOGIN'])){
 <li><a href="?open=BiayaOverhead-Data" target="_self"> Biaya Overhead </a></li>
 <li><a href="?open=Penjualan-Data" target="_self"> Penjualan </a></li>
 </li>
-<li class="text-center text-white"><strong>Laporan</strong>
+<li class="p-2 text-center bg-dark"><strong>Laporan</strong>
 <li><a href="?open=Laporan-Pembelian" target="_self"> Pembelian </a></li>
 <li><a href="?open=Laporan-Pemakaian" target="_self"> Pemakaian Bahan </a></li>
 <li><a href="?open=Laporan-Produksi" target="_self"> Hasil Produksi </a></li>
