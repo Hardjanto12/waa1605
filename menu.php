@@ -9,7 +9,7 @@ if(isset($_SESSION['SES_LOGIN'])){
 
 
 <li class="p-2 text-center bg-dark"><strong>Master</strong>
-<li><a href="?open=Account-Data" target="_self"> Account </a></li>
+<li><a href="?open=Account-Data&p=1" target="_self"> Account </a></li>
 <li><a href="?open=Supplier-Data" target="_self"> Supplier </a></li>
 <li><a href="?open=Customer-Data" target="_self"> Customer </a></li>
 <li><a href="?open=Mesin-Data" target="_self"> Mesin </a></li>
@@ -70,9 +70,9 @@ if(isset($_SESSION['SES_LOGIN'])){
 else {
 	# JIKA BELUM LOGIN (Tidak ada Session yang ditemukan)
 ?>
-<ul>
-    <li><a href="?open=Login" target="_self">Login</a> </li>
-</ul>
+
+<li><a href="?open=Login" target="_self">Login</a> </li>
+
 <?php
 }
 ?>

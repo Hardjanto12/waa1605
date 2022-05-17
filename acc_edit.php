@@ -1,4 +1,9 @@
-<?php
+<div class="form-group row">
+    <button type="submit" name="btnSimpan" class="btn btn-primary btn-lg btn-block" id="btnSimpan"
+        value=" Simpan ">Simpan</button>
+    <!-- <button ttype="cancel" name="btnCancel" class="btn btn-danger btn-lg btn-block" id="btnCancel"
+                    value=" Cancel ">Batalkan</button> -->
+</div><?php
 include_once "library/inc.connection.php";
 include_once "library/inc.seslogin.php"; 
 //include_once "library/inc.library.php";
@@ -80,33 +85,42 @@ $datagrup		= isset($_POST['cmbgrup']) ? $_POST['cmbgrup'] : $myData['grup'];
 ?>
 
 <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" name="form1" target="_self">
-  <table class="table-list" width="700" border="0" cellspacing="2" cellpadding="3">
-    <tr>
-      <td width="212" bgcolor="#CCCCCC"><strong>UBAH DATA COA </strong></td>
-      <td width="6">&nbsp;</td>
-      <td width="456">&nbsp;</td>
-    </tr>
-    <tr>
-      <td><strong>Kode</strong></td>
-      <td><strong>:</strong></td>
-      <td><input name="txtKode" type="text" id="txtKode" value="<?php echo $dataKode; ?>" size="10" maxlength="10" readonly="readonly" >
-      <input name="txtKode" type="hidden" id="txtKode" value="<?php echo $dataKode; ?>" /></td>
-    </tr>
-    <tr>
-      <td><strong>Nama Account </strong></td>
-      <td><strong>:</strong></td>
-      <td><input name="txtNama" type="text" id="txtNama" value="<?php echo $dataNama; ?>" size="60" maxlength="100"></td>
-    </tr>
-    <tr>
-      <td><strong>Induk </strong></td>
-      <td><strong>:</strong></td>
-    <td><input name="txtinduk" type="text" id="txtinduk" value="<?php echo $datainduk; ?>" size="15" maxlength="100" />    </tr>
-    <tr>
-      <td><strong>DK</strong></td>
-      <td><strong>:</strong></td>
-      <td><select name="cmbdk">
-        <option value="Kosong">....</option>
-        <?php
+
+    <div class="container-fluid mb-5">
+        <h1 class=" display-6">Data COA</h1>
+    </div>
+    <div class="container">
+        <!-- KODE -->
+        <div class="form-group row mb-2">
+            <label class="col-sm-2 col-form-label" for="txtKode"><b>Kode :</b></label>
+            <div class="col-sm-10">
+                <input name="txtKode" type="text" class="form-control mb-2 mr-sm-2" placeholder="Masukkan Kode"
+                    id="txtKode" value="<?php echo $dataKode; ?>" readonly>
+            </div>
+        </div>
+        <!-- NAMA -->
+        <div class="form-group row mb-2">
+            <label class="col-sm-2 col-form-label" for="txtNama">Nama:</label>
+            <div class="col-sm-10">
+                <input name="txtNama" type="text" class="form-control mb-2 mr-sm-2" placeholder="Masukkan Nama"
+                    id="txtNama" value="<?php echo $dataNama; ?>">
+            </div>
+        </div>
+        <!-- INDUK -->
+        <div class="form-group row mb-2">
+            <label class="col-sm-2 col-form-label" for="txtInduk">Induk:</label>
+            <div class="col-sm-10">
+                <input name="txtinduk" type="text" class="form-control mb-2 mr-sm-2" placeholder="Masukkan Induk"
+                    id="txtinduk" value="<?php echo $datainduk; ?>">
+            </div>
+        </div>
+        <!-- DK -->
+        <div class="form-group row mb-3">
+            <label class="col-sm-2 col-form-label" for="cmbdk">DK:</label>
+            <div class="col-sm-10">
+                <select class="custom-select" id="cmbdk" name="cmbdk">
+                    <option value="Kosong">....</option>
+                    <?php
 		  $pilihan = array("D", "K");
 		  foreach ($pilihan as  $nilai) {
 			if ($dataDK==$nilai) {
@@ -115,15 +129,16 @@ $datagrup		= isset($_POST['cmbgrup']) ? $_POST['cmbgrup'] : $myData['grup'];
 			echo "<option value='$nilai' $cek> $nilai</option>";
 		  }
 		  ?>
-      </select></td>
-    </tr>
-    <tr>
-      <td><strong>Detil</strong></td>
-      <td><strong>:</strong></td>
-      <td><label>
-        <select name="cmbdetil" id="cmbdetil">
-          <option value="Kosong">....</option>
-          <?php
+                </select>
+            </div>
+        </div>
+        <!-- Detil -->
+        <div class="form-group row mb-3">
+            <label class="col-sm-2 col-form-label" for="cmbdetil">Detil:</label>
+            <div class="col-sm-10">
+                <select class="custom-select" id="cmbdetil" name="cmbdetil">
+                    <option value="Kosong">....</option>
+                    <?php
 		  $pilihan = array("T", "F");
 		  foreach ($pilihan as  $nilai) {
 			if ($datadetil==$nilai) {
@@ -132,15 +147,16 @@ $datagrup		= isset($_POST['cmbgrup']) ? $_POST['cmbgrup'] : $myData['grup'];
 			echo "<option value='$nilai' $cek> $nilai</option>";
 		  }
 		  ?>
-        </select>
-      </label></td>
-    </tr>
-    <tr>
-      <td><strong>Grup</strong></td>
-      <td><strong>:</strong></td>
-      <td><select name="cmbgrup" id="cmbgrup">
-        <option value="Kosong">....</option>
-        <?php
+                </select>
+            </div>
+        </div>
+        <!-- Grup -->
+        <div class="form-group row mb-2">
+            <label class="col-sm-2 col-form-label" for="cmbgrup">Grup:</label>
+            <div class="col-sm-10">
+                <select class="custom-select" id="cmbgrup" name="cmbgrup" data-toggle="popover">
+                    <option value="Kosong">....</option>
+                    <?php
 		  $pilihan = array("1", "2","3","4","5");
 		  foreach ($pilihan as  $nilai) {
 			if ($datagrup==$nilai) {
@@ -149,12 +165,18 @@ $datagrup		= isset($_POST['cmbgrup']) ? $_POST['cmbgrup'] : $myData['grup'];
 			echo "<option value='$nilai' $cek> $nilai</option>";
 		  }
 		  ?>
-      </select></td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td><input name="btnSimpan" type="submit" id="btnSimpan" value=" Simpan "></td>
-    </tr>
-  </table>
+                </select>
+                <small id="grupHelp" class="form-text text-muted">
+                    1 = Aktifa <br> 2 = Kewajiban <br> 3 = Modal <br> 4 = Pendapatan
+                    <br> 5 = Biaya
+                </small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <button type="submit" name="btnSimpan" class="btn btn-primary btn-lg btn-block" id="btnSimpan"
+                value=" Simpan ">Simpan</button>
+            <!-- <button ttype="cancel" name="btnCancel" class="btn btn-danger btn-lg btn-block" id="btnCancel"
+                    value=" Cancel ">Batalkan</button> -->
+        </div>
+    </div>
 </form>

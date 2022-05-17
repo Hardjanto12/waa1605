@@ -3,6 +3,18 @@
 include_once "library/inc.connection.php";
 include_once "library/inc.seslogin.php"; 
 
+
+
+// pagination
+// $p = $_GET["p"];
+$p 	= isset($_GET['p']) ? $_GET['p'] : 1;
+
+
+// if ($p = 1){
+//   $_GET["p"] = 1;
+// echo "<meta http-equiv='refresh' content='0; url=?open=Account-Data&p=1'>";
+// }
+
 # TOMBOL CARI
 if(isset($_POST['btnCari'])) {
 	$txtKataKunci	= $_POST['txtKataKunci'];
@@ -15,103 +27,185 @@ else {
 // Variabel pada form cari
 $dataKataKunci	= isset($_POST['txtKataKunci']) ? $_POST['txtKataKunci'] : '';
 
-// Untuk pembagian halaman data (Paging)
-$baris	= 50;
-$hal 	= isset($_GET['hal']) ? $_GET['hal'] : 1;
 
-$infoSql= "SELECT * FROM acc $filterSQL";
-$infoQry= sqlsrv_query($koneksidb , $infoSql) ;
-$jumlah	= sqlsrv_num_rows($infoQry);
-$maks	= ceil($jumlah/$baris); 
-$mulai	= $baris * ($hal-1);
-?>
+// Limit data per page
+$limitdata = 50;
+
+/* It's for counting the rows. */
+$params = array();
+$options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
+$stmt = sqlsrv_query( $koneksidb, "SELECT * FROM acc" , $params, $options );
+
+$row_count = sqlsrv_num_rows( $stmt );
+
+
+$jumlahpage = ceil($row_count/$limitdata);
+
+
+
+$rowakhir = $p * $limitdata;
+// $rowawal = $rowakhir - 9;
+$rowawal	= $limitdata *   ($p-1);
+
+/* It's a query for pagination. */
+$datapagepbh = "WITH
+            tbl_acc
+            AS
+            (
+                SELECT ROW_NUMBER() OVER (
+                          ORDER BY 
+                                  kdac ASC
+                          ) row_num, *
+                          from acc
+                          $filterSQL
+            )
+        SELECT
+            *
+        FROM
+            tbl_acc
+        WHERE 
+                      row_num >= $rowawal AND
+            row_num <= $rowakhir;
+              ;";
+
+
+
+
+ ?>
 <html>
+
 <head>
-<title>Data COA</title>
+    <title>Data COA</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
+    <div class="container-fluid">
+        <h1 class=" display-3">Data COA</h1>
+    </div>
 
-<table class="table-common" width="700" border="0" cellspacing="2" cellpadding="3">
-  <tr>
-    <td colspan="2"><strong>
-    <h1>DATA COA </h1>
-    </strong></td>
-  </tr>
-  <tr>
-    <td colspan="2">
+    <div class="container">
+        <!-- search -->
+        <div class="row mt-3d-flex align-items-center">
+            <!-- search box -->
+            <div class="col-2">
+                <div class="row">
+                    <strong>PENCARIAN</strong>
+                </div>
+                <div class="row">
+                    <strong>Kode. / Nama COA </strong>
+                </div>
+            </div>
+            <div class="col-3">
+                <form action=" <?php $_SERVER['PHP_SELF']; ?>" method="post" name="form1" target="_self">
+                    <label for="txtKataKunci" class="sr-only">Cari</label>
+                    <input class="form-control" name="txtKataKunci" type="text" id="txtKataKunci"
+                        value="<?php echo $dataKataKunci; ?>" placeholder="Cari">
+            </div>
+            <div class="col">
+                <input name="btnCari" type="submit" id="btnCari" value="Cari" class="btn btn-primary mb-2">
+                </form>
+            </div>
+            <!-- button add data -->
+            <div class="col-auto mb-3">
+                <a href="?open=Account-Add" target="_self">
+                    <button class="btn btn-primary btn-lg"><i class="fa fa-plus"></i>
+                        Add Data</button>
+                </a>
+            </div>
+        </div>
+    </div>
 
-  <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" name="form1" target="_self">
-    <table width="100%" border="0" cellspacing="2" cellpadding="3">
-      <tr>
-        <td width="24%" bgcolor="#CCCCCC"><strong>PENCARIAN</strong></td>
-        <td width="1%">&nbsp;</td>
-        <td width="75%">&nbsp;</td>
-      </tr>
-      <tr>
-        <td><strong>Kode. / Nama COA </strong></td>
-        <td>:</td>
-        <td><input name="txtKataKunci" type="text" id="txtKataKunci" value="<?php echo $dataKataKunci; ?>" size="40" maxlength="100">
-          <input name="btnCari" type="submit" id="btnCari" value="Cari"></td>
-      </tr>
-    </table>
-  </form>
-	
-	</td>
-  </tr>
-  <tr>
-    <td colspan="2" align="right"><a href="?open=Account-Add" target="_self"><img src="images/btn_add_data.png" width="140" height="34" border="0"></a></td>
-  </tr>
-  <tr>
-    <td colspan="2"><table class="table-list" width="100%" border="0" cellspacing="2" cellpadding="3">
-      <tr>
-        <td width="4%" bgcolor="#CCCCCC"><strong>No</strong></td>
-        <td width="8%" bgcolor="#CCCCCC"><strong>Kode</strong></td>
-        <td width="50%" bgcolor="#CCCCCC"><strong>Nama</strong></td>
-        <td width="7%" bgcolor="#CCCCCC"><strong>Induk</strong></td>
-        <td width="6%" bgcolor="#CCCCCC"><strong>DK</strong></td>
-        <td width="6%" bgcolor="#CCCCCC"><strong>detil</strong></td>
-        <td width="6%" bgcolor="#CCCCCC"><strong>grup</strong></td>
-        <td colspan="2" align="center" bgcolor="#CCCCCC"><strong>Tools</strong></td>
-        </tr>
-	  
-<?php
-// Skrip menampilkan data Nasabah
-$mySql 	= "SELECT * FROM acc $filterSQL ORDER BY kdac ASC ";
-$myQry 	= sqlsrv_query($koneksidb,$mySql) ;
-$nomor  = $mulai; 
-while ($myData = sqlsrv_fetch_array($myQry)) {
-	$nomor++;
-	$Kode = $myData['kdac'];
-?>	
 
-      <tr>
-        <td> <?php echo $nomor; ?> </td>
-        <td> <?php echo $myData['kdac']; ?> </td>
-        <td> <?php echo $myData['nmac']; ?> </td>
-        <td> <?php echo $myData['induk']; ?> </td>
-        <td> <?php echo $myData['dk']; ?> </td>
-        <td> <?php echo $myData['detil']; ?> </td>
-        <td> <?php echo $myData['grup']; ?> </td>
-        <td width="11%" align="center"><a href="?open=Account-Delete&Kode=<?php echo $Kode; ?>" target="_self">Delete</a></td>
-        <td width="8%" align="center"><a href="?open=Account-Edit&Kode=<?php echo $Kode; ?>" target="_self">Edit</a></td>
-      </tr>
+    <!-- Table -->
+    <div class="container ">
+        <table class="table table-bordered text-center table-hover mx-auto">
+            <thead class="thead-dark">
+                <tr>
+                    <th>No</th>
+                    <th>Kode</th>
+                    <th>Nama</th>
+                    <th>Induk</th>
+                    <th>DK</th>
+                    <th>Detil</th>
+                    <th>Grup</th>
+                    <th>Tools</th>
+                </tr>
+            </thead>
+            <?php
+                            // Skrip menampilkan data
+                // $mySql 	= "SELECT * FROM acc $filterSQL ORDER BY kdac ASC ";
+                // $myQry 	= sqlsrv_query($koneksidb,$mySql) ;
+                $myQry = sqlsrv_query($koneksidb, $datapagepbh);
+                while ($myData = sqlsrv_fetch_array($myQry)) {
+                  $nomor  = $myData['row_num']; 
+	            // $nomor++;
+	            $Kode = $myData['kdac'];?>
+            <tr>
+                <td width="3%"> <?php echo $nomor; ?> </td>
+                <td> <?php echo $myData['kdac']; ?> </td>
+                <td> <?php echo $myData['nmac']; ?> </td>
+                <td> <?php echo $myData['induk']; ?> </td>
+                <td> <?php echo $myData['dk']; ?> </td>
+                <td> <?php echo $myData['detil']; ?> </td>
+                <td> <?php echo $myData['grup']; ?> </td>
+                <td width="20%">
+                    <a href="?open=Account-Delete&Kode=<?php echo $Kode; ?>" target="_self"><button type="button"
+                            class="btn btn-danger">Delete</button></a>
+                    <a href="?open=Account-Edit&Kode=<?php echo $Kode; ?>" target="_self"><button type="button"
+                            class="btn btn-warning">Edit</button>
+                    </a>
+                </td>
+            </tr>
+            <?php } ?>
+            <tr>
+                <td><strong>Jumlah Data : </strong> <?php echo $row_count; ?>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- end of table -->
 
-<?php } ?> 
-   
-    </table></td>
-  </tr>
-  <tr>
-    <td width="309"><strong>Jumlah Data : </strong>  <?php echo $jumlah; ?>  </td>
-    <td width="373" align="right"><strong>Halaman Ke : </strong>
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <nav aria-label="Page navigation example">
+                <!-- /* It's a pagination. */ -->
+                <ul class="pagination">
+                    <?php 
 
-	<?php
-	for ($h = 1; $h <= $maks; $h++) {
-		echo " <a href='?open=Account-Data&hal=$h'>$h</a> ";
-	}
-	?> 
+                        $prev = $_GET["p"] - 1;
+                        $nxt = $_GET["p"] + 1;
 
-</td>
-  </tr>
-</table>
+                        $nxtoff = "";
+                        $prevoff = "";
+                        
+                        if ($nxt > $jumlahpage) {
+                            $nxtoff = "disabled";
+                        }
+                        if ($_GET["p"] == 1) {
+                            $prevoff = "disabled";
+                        }
+                        
+
+                        echo '<li class="page-item '. $prevoff .'"><a class="page-link" href="?open=Account-Data&p='.$prev.'">Previous</a></li>';
+
+
+                        for ($x = 1; $x <= $jumlahpage; $x+=1) {
+                            $active = ""; 
+                            if ($_GET["p"] == $x) {
+                                $active = "active";
+                            }            
+                            echo '<li class="page-item '.$active.'"><a class="page-link" href="?open=Account-Data&p='.$x.'">';
+                        echo "$x";
+                        echo'</a></li>';
+                        }
+                        echo '<li class="page-item '. $nxtoff .'"><a class="page-link" href="?open=Account-Data&p='. $nxt .'">Next</a></li>';?>
+                </ul>
+            </nav>
+            <!-- end pagination -->
+        </div>
+    </div>
+
 </body>
+
 </html>
