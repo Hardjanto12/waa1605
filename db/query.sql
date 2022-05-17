@@ -20,3 +20,10 @@ WHERE
 Select *
 from acc;
 
+SELECT ROW_NUMBER() OVER (
+                    ORDER BY 
+                    grup ASC
+                    ) row_num, *, case when grup='1' then 'Supplier' when grup='2' then 'Customer' end as grp
+FROM sub
+ORDER By grup, sub ASC
+
