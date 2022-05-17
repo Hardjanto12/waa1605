@@ -152,7 +152,7 @@ while ($myData = sqlsrv_fetch_array($myQry)) {
                     <a href="?open=Supplier-Delete&Kode=<?php echo $Kode; ?>" target="_self"
                         onclick="return confirm('YAKIN INGIN MENGHAPUS DATA BAGIAN INI ... ?')"><button type="button"
                             class="btn btn-danger">Delete</button></a>
-                    <a href="?open=Account-Edit&Kode=<?php echo $Kode; ?>" target="_self"><button type="button"
+                    <a href="?open=Supplier-Edit&Kode=<?php echo $Kode; ?>" target="_self"><button type="button"
                             class="btn btn-warning">Edit</button>
                     </a>
                 </td>

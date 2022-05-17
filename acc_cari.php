@@ -58,7 +58,7 @@ $rowakhir = $p * $limitdata;
 // $rowawal = $rowakhir - 9;
 $rowawal	= $limitdata *   ($p-1);
 
-$datapagepbh = "WITH
+$datapageacc = "WITH
             tbl_acc
             AS
             (
@@ -142,7 +142,7 @@ $datapagepbh = "WITH
             <?php
 // Skrip menampilkan data dari database
 // $mySql = "SELECT * FROM acc $pencarianSQL ORDER BY kdac ASC ";
-$myQry = sqlsrv_query($koneksidb, $datapagepbh);
+$myQry = sqlsrv_query($koneksidb, $datapageacc);
 while ($myData = sqlsrv_fetch_array($myQry)) {
   
   $nomor  = $myData['row_num']; 
