@@ -48,7 +48,7 @@ $rowakhir = $p * $limitdata;
 $rowawal	= $limitdata *   ($p-1);
 
 /* It's a query for pagination. */
-$datapagepbh = "WITH
+$datapageacc = "WITH
             tbl_acc
             AS
             (
@@ -136,7 +136,7 @@ $datapagepbh = "WITH
                             // Skrip menampilkan data
                 // $mySql 	= "SELECT * FROM acc $filterSQL ORDER BY kdac ASC ";
                 // $myQry 	= sqlsrv_query($koneksidb,$mySql) ;
-                $myQry = sqlsrv_query($koneksidb, $datapagepbh);
+                $myQry = sqlsrv_query($koneksidb, $datapageacc);
                 while ($myData = sqlsrv_fetch_array($myQry)) {
                   $nomor  = $myData['row_num']; 
 	            // $nomor++;
@@ -161,6 +161,9 @@ $datapagepbh = "WITH
             <tr>
                 <td><strong>Jumlah Data : </strong> <?php echo $row_count; ?>
                 </td>
+            </tr>
+            <tr>
+
             </tr>
         </table>
     </div>
