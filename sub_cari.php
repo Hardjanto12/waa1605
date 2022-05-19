@@ -6,7 +6,7 @@ include_once "library/inc.library.php";
 
 // pagination
 $p = $_GET["p"];
-// $p 	= isset($_GET['p']) ? $_GET['p'] : 1;
+
 
 
 if (is_null($p)){
@@ -78,13 +78,6 @@ $datapagesub = "WITH
             row_num <= $rowakhir;
               ;"
 
-# UNTUK PAGING (PEMBAGIAN HALAMAN)
-// $baris 		= 50;
-// $halaman 	= isset($_GET['hal']) ? $_GET['hal'] : 0;
-// $pageSql 	= "SELECT * FROM sub $pencarianSQL";
-// $pageQry 	= sqlsrv_query($koneksidb, $pageSql );
-// $jmlData	= sqlsrv_num_rows($pageQry);
-// $maksData	= ceil($jmlData/$baris);
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -98,7 +91,7 @@ $datapagesub = "WITH
 
 <body>
     <div class="container-fluid">
-        <h1 class="display-5">PENCARIAN Supplier</h1>
+        <h1 class="display-5">PENCARIAN SUPLIER</h1>
     </div>
     <div class="container-fluid">
         <!-- search box -->
@@ -138,11 +131,6 @@ $datapagesub = "WITH
                     <th>Tools</th>
                 </tr>
             </thead>
-
-
-
-
-
             <?php
 // Skrip menampilkan data dari database
 
@@ -195,7 +183,7 @@ while ($myData = sqlsrv_fetch_array($myQry)) {
                         }
                         
 
-                        echo '<li class="page-item '. $prevoff .'"><a class="page-link" href="?open=Supplier-Data&p='.$prev.'">Previous</a></li>';
+                        echo '<li class="page-item '. $prevoff .'"><a class="page-link" href="cus_cari.php?p='.$prev.'">Previous</a></li>';
 
 
                         for ($x = 1; $x <= $jumlahpage; $x+=1) {
@@ -203,11 +191,11 @@ while ($myData = sqlsrv_fetch_array($myQry)) {
                             if ($_GET["p"] == $x) {
                                 $active = "active";
                             }            
-                            echo '<li class="page-item '.$active.'"><a class="page-link" href="?open=Supplier-Data&p='.$x.'">';
+                            echo '<li class="page-item '.$active.'"><a class="page-link" href="cus_cari.php?p='.$x.'">';
                         echo "$x";
                         echo'</a></li>';
                         }
-                        echo '<li class="page-item '. $nxtoff .'"><a class="page-link" href="?open=Supplier-Data&p='. $nxt .'">Next</a></li>';?>
+                        echo '<li class="page-item '. $nxtoff .'"><a class="page-link" href="cus_cari.php?p='. $nxt .'">Next</a></li>';?>
                             </ul>
                         </nav>
                         <!-- end pagination -->

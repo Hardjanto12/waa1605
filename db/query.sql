@@ -27,3 +27,43 @@ SELECT ROW_NUMBER() OVER (
 FROM sub
 ORDER By grup, sub ASC
 
+SELECT ROW_NUMBER() OVER (
+    ORDER BY 
+    grup ASC
+    ) row_num, *, case when grup='1' then 'Supplier' when grup='2' then 'Customer' end as grp
+FROM sub
+
+SELECT ROW_NUMBER() OVER (
+    ORDER BY 
+    grup ASC
+    ) row_num, *
+FROM sub
+where grup = '2'
+
+SELECT ROW_NUMBER() OVER (
+    ORDER BY 
+    sub ASC
+    ) row_num, *, case when grup='1' then 'Supplier' when grup='2' then 'Customer' end as grp
+FROM sub
+WHERE grup = '2'
+ORDER By grup, sub ASC
+
+WITH
+    tbl_cus
+    AS
+    (
+        SELECT ROW_NUMBER() OVER (
+    ORDER BY 
+    sub ASC
+    ) row_num, *, case when grup='1' then 'Supplier' when grup='2' then 'Customer' end as grp
+        FROM sub
+        WHERE grup = '2'
+        ORDER By grup, sub ASC
+    )
+SELECT
+    *
+FROM
+    tbl_cus
+WHERE 
+            row_num >= 1 AND
+    row_num <= 10

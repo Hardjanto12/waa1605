@@ -68,46 +68,62 @@ $dataHP 		= isset($_POST['txtHP']) ? $_POST['txtHP'] : $myData['hp'];
 
 <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" name="form1" target="_self">
 
-<form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" name="form1" target="_self">
-  <table class="table-list" width="776" border="0" cellspacing="2" cellpadding="3">
-    <tr>
-      <td colspan="3" bgcolor="#CCCCCC"><strong>UBAH DATA SUB ACCOUNT </strong></td>
-    </tr>
-    <tr>
-      <td width="110"><strong>Kode</strong></td>
-      <td width="9"><strong>:</strong></td>
-      <td width="631"><input name="txtKode" type="text" id="txtKode" value="<?php echo $dataKode; ?>" size="10" maxlength="10" readonly="readonly">
-        <input name="txtKode" type="hidden" id="txtKode" value="<?php echo $dataKode; ?>" /></td>
-    </tr>
-    <tr>
-      <td><strong>Nama  </strong></td>
-      <td><strong>:</strong></td>
-      <td><input name="txtNama" type="text" id="txtNama" value="<?php echo $dataNama; ?>" size="60" maxlength="100" /></td>
-    </tr>
-    <tr>
-      <td><strong>Alamat</strong></td>
-      <td><strong>:</strong></td>
-    <td><input name="txtalamat" type="text" id="txtalamat" value="<?php echo $dataalamat; ?>" size="100" maxlength="100" /></td>
-    </tr>
-    <tr>
-      <td><strong>Kota </strong></td>
-      <td><strong>:</strong></td>
-  	  <td><input name="txtKota" type="text" id="txtKota" value="<?php echo $dataKota; ?>" size="100" maxlength="100" /></td>
-    </tr>
-    <tr>
-      <td><strong>Telp </strong></td>
-      <td><strong>:</strong></td>
-      <td><input name="txtTelp" type="text" id="txtTelp" value="<?php echo $dataTelp; ?>" size="100" maxlength="100" /></td>
-    </tr>
-    <tr>
-      <td><strong>HP </strong></td>
-      <td><strong>:</strong></td>
-      <td><input name="txtHP" type="text" id="txtHP" value="<?php echo $dataHP; ?>" size="100" maxlength="100" /></td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td><input name="btnSimpan" type="submit" id="btnSimpan" value=" Simpan " /></td>
-    </tr>
-  </table>
-</form>
+    <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" name="form1"
+        target="_self">
+        <div class="container-fluid mb-5">
+            <h1 class=" display-6">Tambah Data Customer</h1>
+        </div>
+        <div class="container">
+            <div class="form-group row mb-2">
+                <label class="col-sm-2 col-form-label" for="txtKode">Kode:</label>
+                <div class="col-sm-10">
+                    <input name="txtKode" type="text" class="form-control mb-2 mr-sm-2" placeholder="Masukkan Kode"
+                        id="txtKode" value="<?php echo $dataKode; ?>">
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-sm-2 col-form-label" for="txtNama">Nama:</label>
+                <div class="col-sm-10">
+                    <input name="txtNama" type="text" class="form-control mb-2 mr-sm-2" placeholder="Masukkan Nama"
+                        id="txtNama" value="<?php echo $dataNama; ?>">
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-sm-2 col-form-label" for="txtalamat">Alamat:</label>
+                <div class="col-sm-10">
+                    <input name="txtalamat" type="text" class="form-control mb-2 mr-sm-2" placeholder="Masukkan alamat"
+                        id="txtalamat" value="<?php echo $dataalamat; ?>">
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-sm-2 col-form-label" for="txtKota">Kota:</label>
+                <div class="col-sm-10">
+                    <input name="txtKota" type="text" class="form-control mb-2 mr-sm-2" placeholder="Masukkan kota"
+                        id="txtKota" value="<?php echo $dataKota; ?>">
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-sm-2 col-form-label" for="txtTelp">Telp:</label>
+                <div class="col-sm-10">
+                    <input name="txtTelp" type="text" class="form-control mb-2 mr-sm-2"
+                        placeholder="Masukkan no telepon" id="txtTelp" value="<?php echo $dataTelp; ?>">
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-sm-2 col-form-label" for="txtHP">HP:</label>
+                <div class="col-sm-10">
+                    <input name="txtHP" type="text" class="form-control mb-2 mr-sm-2" placeholder="Masukkan no telepon"
+                        id="txtHP" value="<?php echo $dataHP; ?>">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <button type="submit" name="btnSimpan" class="btn btn-primary btn-lg btn-block" id="btnSimpan"
+                    value=" Simpan ">Simpan</button>
+            </div>
+    </form>

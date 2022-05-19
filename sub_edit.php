@@ -72,7 +72,7 @@ $datagrup		= isset($_POST['cmbgrup']) ? $_POST['cmbgrup'] : $myData['grup'];
     <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" name="form1"
         target="_self">
         <div class="container-fluid mb-5">
-            <h1 class=" display-6">Tambah Data COA</h1>
+            <h1 class=" display-6">Tambah Data Suplier</h1>
         </div>
         <div class="container">
             <div class="form-group row mb-2">

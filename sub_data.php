@@ -27,6 +27,7 @@ else {
 
 // Variabel pada form cari
 $dataKataKunci	= isset($_POST['txtKataKunci']) ? $_POST['txtKataKunci'] : '';
+
 // Limit data per page
 $limitdata = 50;
 
@@ -131,9 +132,6 @@ FROM sub
                 </tr>
             </thead>
             <?php
-// Skrip menampilkan data Nasabah
-// $mySql 	= "SELECT *, case when grup='1' then 'Supplier' when grup='2' then 'Customer' end as grp FROM sub $filterSQL ORDER By grup, sub ASC ";
-//echo  "ok" . $mySql;
 $myQry 	= sqlsrv_query($koneksidb,$mySql) ;
 
 while ($myData = sqlsrv_fetch_array($myQry)) {
