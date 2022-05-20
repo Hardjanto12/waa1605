@@ -12,7 +12,7 @@ if(isset($_GET['Kode'])){
 	$my2Qry = sqlsrv_query($koneksidb, $my2Sql) ;
 	if($my2Qry){
 		// Refresh halaman
-		echo "<meta http-equiv='refresh' content='0; url=?open=Supplier-Data'>";
+		echo "<meta http-equiv='refresh' content='0; url=?open=Customer	-Data'>";
 	}
 	exit;
 }
@@ -20,6 +20,4 @@ else {
 	// Jika tidak ada data Kode ditemukan di URL
 	echo "<b>Data yang dihapus tidak ada</b>";
 }
-?> 
-
-
+?>
