@@ -87,50 +87,61 @@ else {
 
 <SCRIPT language="JavaScript">
 function submitform() {
-	document.form1.submit();
+    document.form1.submit();
 }
-</SCRIPT> 
+</SCRIPT>
 
 <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" name="form1" target="_self">
 
-<form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" name="form1" target="_self">
-  <table class="table-list" width="810" border="0" cellspacing="2" cellpadding="3">
-    <tr>
-      <td colspan="3" bgcolor="#CCCCCC"><strong>TAMBAH DATA INVENTORY </strong></td>
-    </tr>
-    <tr>
-      <td width="133"><strong>Kode</strong></td>
-      <td width="7"><strong>:</strong></td>
-      <td width="644"><input name="txtKode" type="text" id="txtKode" value="<?php echo $dataKode; ?>" size="15" maxlength="15" /></td>
-    </tr>
-    <tr>
-      <td><strong>Nama  </strong></td>
-      <td><strong>:</strong></td>
-      <td><input name="txtNama" type="text" id="txtNama" value="<?php echo $dataNama; ?>" size="60" maxlength="100" /></td>
-    </tr>
-    <tr>
-      <td><strong>Unit  </strong></td>
-      <td><strong>:</strong></td>
-      <td><input name="txtUnit" type="text" id="txtUnit" value="<?php echo $dataUnit; ?>" size="3" maxlength="3" /></td>
-    </tr>
-	<tr>
-      <td><strong> Harga Beli </strong></td>
-      <td><strong>:</strong></td>
-      <td><b>
-        <input align="right" name="txtBprice" onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="<?php echo $dataBprice; ?>" size="20" maxlength="12"/>
-      </b></td>
-    </tr>
-	<tr>
-      <td><strong> Harga Jual </strong></td>
-      <td><strong>:</strong></td>
-      <td><b>
-        <input align="right" name="txtPrice1" onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="<?php echo $dataPrice1; ?>" size="20" maxlength="12"/>
-      </b></td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td><input name="btnSimpan" type="submit" id="btnSimpan" value=" Simpan " /></td>
-    </tr>
-  </table>
-</form>
+    <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" name="form1"
+        target="_self">
+        <div class="container-fluid mb-5">
+            <h1 class=" display-6">Tambah Data Inventory</h1>
+        </div>
+        <div class="container">
+            <div class="form-group row mb-2">
+                <label class="col-sm-2 col-form-label" for="txtKode">Kode:</label>
+                <div class="col-sm-10">
+                    <input name="txtKode" type="text" class="form-control mb-2 mr-sm-2" placeholder="Masukkan Kode"
+                        id="txtKode" value="<?php echo $dataKode; ?>">
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <label class="col-sm-2 col-form-label" for="txtNama">Nama:</label>
+                <div class="col-sm-10">
+                    <input name="txtNama" type="text" class="form-control mb-2 mr-sm-2" placeholder="Masukkan Nama"
+                        id="txtNama" value="<?php echo $dataNama; ?>">
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <label class="col-sm-2 col-form-label" for="txtUnit">Unit:</label>
+                <div class="col-sm-3">
+                    <input name="txtUnit" type="text" id="txtUnit" value="<?php echo $dataUnit; ?>"
+                        class="form-control mb-2 mr-sm-2" placeholder="Masukkan unit" maxlength="3">
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <label class="col-sm-2 col-form-label" for="txtBprice">Harga Beli:</label>
+                <div class="col-sm-10">
+                    <input name="txtBprice" type="text" class="form-control mb-2 mr-sm-2"
+                        placeholder="Masukkan harga beli"
+                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                        value="<?php echo $dataBprice; ?>" size="20" maxlength="12">
+                </div>
+            </div>
+            <!-- harga jual -->
+            <div class="form-group row mb-2">
+                <label class="col-sm-2 col-form-label" for="txtPrice1">Harga Jual:</label>
+                <div class="col-sm-10">
+                    <input name="txtPrice1" type="text" class="form-control mb-2 mr-sm-2"
+                        placeholder="Masukkan harga jual"
+                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                        value="<?php echo $dataBprice; ?>" size="20" maxlength="12">
+                </div>
+            </div>
+            <div class="form-group row">
+                <button type="submit" name="btnSimpan" class="btn btn-primary btn-lg btn-block" id="btnSimpan"
+                    value=" Simpan ">Simpan</button>
+            </div>
+        </div>
+    </form>

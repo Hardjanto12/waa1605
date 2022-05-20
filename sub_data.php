@@ -69,7 +69,7 @@ FROM sub
         WHERE 
             row_num >= $rowawal AND
             row_num <= $rowakhir;
-            ;";
+            ";
 
 ?>
 <html>
